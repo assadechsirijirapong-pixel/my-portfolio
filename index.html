@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Tech Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#07060d;
+  --panel:#0f0c1d;
+  --neon:#b48cff;
+  --gold:#ffd36a;
+  --text:#ffffff;
+  --muted:#bfb8ff;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:radial-gradient(circle at top,#1b1440,#07060d 60%);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
+
+/* ===== NEON BACKGROUND ===== */
+.neon{
+  position:fixed;
+  width:420px;height:420px;
+  background:radial-gradient(circle,var(--neon),transparent 70%);
+  filter:blur(120px);
+  opacity:.55;
+  animation:float 14s infinite alternate;
+}
+.n1{top:-120px;left:-120px;}
+.n2{bottom:-120px;right:-120px;animation-delay:3s;}
+
+@keyframes float{
+  to{transform:translateY(120px)}
+}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:80px 20px;
+}
+
+.hero-box{
+  max-width:1200px;
+  width:100%;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:60px;
+}
+
+.hero h1{
+  font-family:'Orbitron',sans-serif;
+  font-size:3.2rem;
+  margin:0 0 20px;
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:1.1rem;
+}
+
+.cta{
+  margin-top:30px;
+  padding:14px 30px;
+  background:linear-gradient(135deg,var(--gold),#ffb700);
+  border:none;
+  border-radius:16px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 0 35px rgba(255,211,106,.8);
+  transition:.25s;
+}
+.cta:hover{transform:scale(1.07)}
+
+/* ===== CARD FLIP PANEL ===== */
+.card{
+  perspective:1200px;
+  cursor:pointer;
+}
+
+.card-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+  transform-style:preserve-3d;
+  transition:transform .9s cubic-bezier(.4,.2,.2,1);
+}
+
+.card.is-flipped .card-inner{
+  transform:rotateY(180deg);
+}
+
+.card-face{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  background:linear-gradient(135deg,#14112a,#0f0c1d);
+  border-radius:28px;
+  padding:45px;
+  box-shadow:0 30px 70px rgba(0,0,0,.6);
+}
+
+.card-face::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:28px;
+  box-shadow:inset 0 0 0 1px rgba(180,140,255,.25);
+}
+
+.card-front img{
+  width:90px;
+  background:white;
+  border-radius:50%;
+  padding:10px;
+  margin-bottom:20px;
+}
+
+.card-back{
+  transform:rotateY(180deg);
+  text-align:center;
+}
+
+.badge{
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:999px;
+  background:rgba(255,211,106,.15);
+  color:var(--gold);
+  font-weight:600;
+  margin-top:12px;
+}
+
+/* ===== SECTION ===== */
+section{
+  max-width:1200px;
+  margin:auto;
+  padding:100px 20px;
+}
+
+.title{
+  font-family:'Orbitron',sans-serif;
+  font-size:2.2rem;
+  margin-bottom:40px;
+}
+
+/* ===== SKILLS ===== */
+.skills{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:30px;
+}
+
+.skill{
+  background:var(--panel);
+  border-radius:22px;
+  padding:35px;
+  transition:.3s;
+}
+.skill:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 40px rgba(180,140,255,.6);
+}
+
+/* ===== PROJECT ===== */
+.project{
+  background:linear-gradient(135deg,#1b1640,#0f0c1d);
+  border-radius:26px;
+  padding:40px;
+  margin-bottom:35px;
+  transition:.3s;
+}
+.project:hover{transform:scale(1.04)}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  padding:50px;
+  color:var(--muted);
+}
+
+@media(max-width:900px){
+  .hero-box{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="neon n1"></div>
+<div class="neon n2"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-box">
+
+    <div>
+      <h1>Premium<br>Tech Portfolio</h1>
+      <p>Casino-inspired UI Demo (Non-Gambling)</p>
+      <button class="cta" onclick="document.getElementById('skills').scrollIntoView({behavior:'smooth'})">
+        Enter Portfolio
+      </button>
+    </div>
+
+    <!-- FLIP CARD -->
+    <div class="card" id="card">
+      <div class="card-inner">
+
+        <!-- FRONT -->
+        <div class="card-face card-front">
+          <img src="cmu-logo.png" alt="Logo">
+          <h2>นายอัศม์เดช สิริจิระพงศ์</h2>
+          <p>สายวิทย์–คณิต (เน้นคอมพิวเตอร์)</p>
+          <span class="badge">UI / Web / Tech</span>
+          <p style="margin-top:18px;opacity:.6;">คลิกเพื่อดูด้านหลัง</p>
+        </div>
+
+        <!-- BACK -->
+        <div class="card-face card-back">
+          <h2>About Me</h2>
+          <p>
+            สนใจการออกแบบ UI/UX และการพัฒนาเว็บไซต์<br>
+            มุ่งเน้นงานที่ดูทันสมัย มีลูกเล่น และใช้งานได้จริง
+          </p>
+          <span class="badge">Future IT Student</span>
+          <p style="margin-top:18px;opacity:.6;">คลิกเพื่อกลับ</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <h2 class="title">Skill Table</h2>
+  <div class="skills">
+    <div class="skill">💻 Computer & Internet</div>
+    <div class="skill">🧩 HTML / CSS</div>
+    <div class="skill">🐍 Python</div>
+    <div class="skill">🧠 Problem Solving</div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section>
+  <h2 class="title">Projects</h2>
+  <div class="project">🌐 Portfolio Website</div>
+  <div class="project">📊 Python Calculator</div>
+  <div class="project">📚 Classroom System</div>
+</section>
+
+<footer>
+  Demo UI • Card Flip • Native JavaScript
+</footer>
+
+<script>
+const card = document.getElementById("card");
+card.addEventListener("click", () => {
+  card.classList.toggle("is-flipped");
+});
+</script>
+
+</body>
+</html>
